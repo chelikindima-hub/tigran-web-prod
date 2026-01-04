@@ -57,10 +57,10 @@ export function GlobeSection() {
 
             canvas.style.width = `${SIZE / 2}px`;
             canvas.style.height = `${SIZE / 2}px`;
-            canvas.style.position = 'absolute';
-            canvas.style.left = '50%';
-            canvas.style.top = '0%';
-            canvas.style.transform = 'translate(-50%, 0)';
+           canvas.style.position = 'absolute';
+canvas.style.left = '50%';
+canvas.style.top = '50%';
+canvas.style.transform = 'translate(-50%, -50%)';
 
             setTimeout(() => {
                 canvas.style.transition = 'opacity 1s ease';
