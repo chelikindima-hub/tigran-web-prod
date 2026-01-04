@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { sendMessageToGemini } from '../../services/geminiService';
 import { ChatMessage, BotStatus } from '../../types';
 import { MessageSquare, Send, Minus } from 'lucide-react';
 
@@ -42,6 +41,8 @@ export function AIConsultant() {
     setStatus(BotStatus.THINKING);
 
     try {
+      // Dynamic import - only loads when user sends first message
+      const { sendMessageToGemini } = await import('../../services/geminiService');
       const responseText = await sendMessageToGemini(input);
       const botMsg: ChatMessage = {
         id: (Date.now() + 1).toString(),
