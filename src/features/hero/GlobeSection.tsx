@@ -135,12 +135,10 @@ export function GlobeSection() {
 
                     {/* CANVAS */}
                     <canvas
-                        ref={canvasRef}
-                        className="outline-none opacity-0"
-                        style={{
-                            mixBlendMode: 'multiply'
-                        }}
-                    />
+    ref={canvasRef}
+    className="outline-none"
+    style={{}}
+/>
 
                 </div>
 
