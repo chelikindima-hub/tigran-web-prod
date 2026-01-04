@@ -13,15 +13,19 @@ export function GlobeSection() {
         let globe: ReturnType<typeof createGlobe> | null = null;
         let resizeTimeout: NodeJS.Timeout;
 
-        const initGlobe = () => {
-            const container = containerRef.current;
-            const canvas = canvasRef.current;
-            if (!container || !canvas) return;
+      const initGlobe = () => {
+    const container = containerRef.current;
+    const canvas = canvasRef.current;
+    if (!container || !canvas) return;
 
-            const w = container.offsetWidth;
-            const SIZE = Math.max(w * 1.5, 1000);
+    const w = container.offsetWidth;
+    const SIZE = Math.max(w * 1.5, 1000);
 
-            canvas.style.opacity = '0';
+    console.log('Container width:', w);
+    console.log('Globe SIZE:', SIZE);
+    console.log('Container height:', container.offsetHeight);
+
+    canvas.style.opacity = '0';
 
             globe = createGlobe(canvas, {
                 devicePixelRatio: 2,
