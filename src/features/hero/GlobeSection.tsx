@@ -72,11 +72,9 @@ export function GlobeSection() {
             }, 100);
         };
 
-        initGlobe();
-
         const initTimeout = setTimeout(initGlobe, 100);
 
-    const onResize = () => {
+        const onResize = () => {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
                 if (globe) {
@@ -88,14 +86,13 @@ export function GlobeSection() {
 
         window.addEventListener('resize', onResize);
 
-       return () => {
-        window.removeEventListener('resize', onResize);
-        clearTimeout(initTimeout);
-        clearTimeout(resizeTimeout);
-        if (globe) {
-            globe.destroy();
-        }
-    };
+        return () => {
+            window.removeEventListener('resize', onResize);
+            clearTimeout(initTimeout);
+            clearTimeout(resizeTimeout);
+            if (globe) {
+                globe.destroy();
+            }
         };
     }, []);
 
