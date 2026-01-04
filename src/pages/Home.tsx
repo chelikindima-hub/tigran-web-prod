@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Header } from '../features/layout/Header';
 import { Protocol } from '../features/services/Protocol';
 import { Services } from '../features/services/Services';
@@ -9,7 +9,9 @@ import { AIConsultant } from '../features/hero/AIConsultant';
 import { HeroNew } from '../features/hero/HeroNew';
 import { TechTicker } from '../features/hero/TechTicker';
 import { Contact } from '../features/contact/Contact';
-import { GlobeSection } from '../features/hero/GlobeSection';
+const GlobeSection = lazy(() => 
+  import('../features/hero/GlobeSection').then(m => ({ default: m.GlobeSection }))
+);;
 import { Background } from '../features/layout/Background';
 
 export function Home() {
@@ -30,7 +32,9 @@ export function Home() {
                 {/* Content Sections */}
                 <Services />
                 <About />
-                <GlobeSection />
+                <Suspense fallback={<div className="h-[600px]" />}>
+  <GlobeSection />
+</Suspense>
                 <TechTicker />
                 <Pricing />
                 <Contact />
