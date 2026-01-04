@@ -13,19 +13,15 @@ export function GlobeSection() {
         let globe: ReturnType<typeof createGlobe> | null = null;
         let resizeTimeout: NodeJS.Timeout;
 
-      const initGlobe = () => {
-    const container = containerRef.current;
-    const canvas = canvasRef.current;
-    if (!container || !canvas) return;
+        const initGlobe = () => {
+            const container = containerRef.current;
+            const canvas = canvasRef.current;
+            if (!container || !canvas) return;
 
-    const w = container.offsetWidth;
-    const SIZE = Math.max(w * 1.5, 1000);
+            const w = container.offsetWidth;
+            const SIZE = Math.max(w * 1.5, 1000);
 
-    console.log('Container width:', w);
-    console.log('Globe SIZE:', SIZE);
-    console.log('Container height:', container.offsetHeight);
-
-    canvas.style.opacity = '0';
+            canvas.style.opacity = '0';
 
             globe = createGlobe(canvas, {
                 devicePixelRatio: 2,
@@ -63,8 +59,8 @@ export function GlobeSection() {
             canvas.style.height = `${SIZE / 2}px`;
             canvas.style.position = 'absolute';
             canvas.style.left = '50%';
-            canvas.style.top = '50%';
-            canvas.style.transform = 'translate(-50%, -50%)';
+            canvas.style.top = '0%';
+            canvas.style.transform = 'translate(-50%, 0)';
 
             setTimeout(() => {
                 canvas.style.transition = 'opacity 1s ease';
@@ -72,7 +68,7 @@ export function GlobeSection() {
             }, 100);
         };
 
-        const initTimeout = setTimeout(initGlobe, 100);
+        initGlobe();
 
         const onResize = () => {
             clearTimeout(resizeTimeout);
@@ -88,7 +84,6 @@ export function GlobeSection() {
 
         return () => {
             window.removeEventListener('resize', onResize);
-            clearTimeout(initTimeout);
             clearTimeout(resizeTimeout);
             if (globe) {
                 globe.destroy();
@@ -140,10 +135,12 @@ export function GlobeSection() {
 
                     {/* CANVAS */}
                     <canvas
-    ref={canvasRef}
-    className="outline-none"
-    style={{}}
-/>
+                        ref={canvasRef}
+                        className="outline-none opacity-0"
+                        style={{
+                            mixBlendMode: 'multiply'
+                        }}
+                    />
 
                 </div>
 
